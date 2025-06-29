@@ -42,20 +42,13 @@
                             </svg>
                         </button>
                         <div id="session-dropdown-list" class="mt-1 space-y-1 pl-8 hidden">
-                            <a href="/sessions/create" class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Create Session</span>
-                            </a>
+                           
                             <a href="/sessions"
                                 class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
                                 <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
                                 <span class="whitespace-nowrap transition-all duration-300 sidebar-text">All Sessions</span>
                             </a>
-                            <a href="/sessions/active"
-                                class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Active Sessions</span>
-                            </a>
+                           
                         </div>
                     </div>
 
@@ -73,24 +66,59 @@
                             </svg>
                         </button>
                         <div id="course-dropdown-list" class="mt-1 space-y-1 pl-8 hidden">
-                            <a href="/courses/create" class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Add New Course</span>
-                            </a>
+                           
                             <a href="/courses"
                                 class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
                                 <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
                                 <span class="whitespace-nowrap transition-all duration-300 sidebar-text">All Courses</span>
                             </a>
-                            <a href="/courses/categories"
-                                class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Course Categories</span>
-                            </a>
+                           
                         </div>
                     </div>
                 </div>
+ <!-- Student Accounts Section -->
+                <div class="px-2 pt-4">
+                    <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 ml-3 whitespace-nowrap sidebar-text">Student Management</h3>
+                      <a href="/students/create" class="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 group transition mb-1">
+                        <svg class="w-5 h-5 flex-shrink-0 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"></path>
+                        </svg>
+                        <span class="ml-3 whitespace-nowrap transition-all duration-300 sidebar-text">Registration</span>
+                    </a>
+                    <!-- Accounts -->
+                    <div id="accounts-dropdown" class="mb-1">
+                        <button class="flex items-center justify-between w-full px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 group transition focus:outline-none">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 flex-shrink-0 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="ml-3 whitespace-nowrap transition-all duration-300 sidebar-text text-left">Students</span>
+                            </div>
+                            <svg class="w-4 h-4 flex-shrink-0 transition-transform duration-200 text-gray-500" id="accounts-dropdown-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                      
+                        <div id="accounts-dropdown-list" class="mt-1 space-y-1 pl-8 hidden">
+                            <a href="/accounts/balances" class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
+                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Account Balances</span>
+                            </a>
+                            <a href="/accounts/transactions"
+                                class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
+                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Transaction History</span>
+                            </a>
+                            <a href="/accounts/statements"
+                                class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
+                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Generate Statements</span>
+                            </a>
+                        </div>
+                    </div>
 
+                    
+                </div>
                 <!-- Payment Management Section -->
                 <div class="px-2 pt-4">
                     <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 ml-3 whitespace-nowrap sidebar-text">Payment Management</h3>
@@ -109,25 +137,11 @@
                             </svg>
                         </button>
                         <div id="payments-dropdown-list" class="mt-1 space-y-1 pl-8 hidden">
-                            <a href="/payments/new" class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
+                            <a href="/payments/session" class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
                                 <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">New Payment</span>
+                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Due Payment</span>
                             </a>
-                            <a href="/payments/received"
-                                class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Received Payments</span>
-                            </a>
-                            <a href="/payments/pending"
-                                class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Pending Payments</span>
-                            </a>
-                            <a href="/payments/refunds"
-                                class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Refunds</span>
-                            </a>
+                          
                         </div>
                     </div>
 
@@ -179,59 +193,11 @@
                     </a>
                 </div>
 
-                <!-- Student Accounts Section -->
-                <div class="px-2 pt-4">
-                    <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 ml-3 whitespace-nowrap sidebar-text">Student Management</h3>
-                      <a href="/register" class="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 group transition mb-1">
-                        <svg class="w-5 h-5 flex-shrink-0 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"></path>
-                        </svg>
-                        <span class="ml-3 whitespace-nowrap transition-all duration-300 sidebar-text">Registration</span>
-                    </a>
-                    <!-- Accounts -->
-                    <div id="accounts-dropdown" class="mb-1">
-                        <button class="flex items-center justify-between w-full px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 group transition focus:outline-none">
-                            <div class="flex items-center">
-                                <svg class="w-5 h-5 flex-shrink-0 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="ml-3 whitespace-nowrap transition-all duration-300 sidebar-text text-left">Accounts</span>
-                            </div>
-                            <svg class="w-4 h-4 flex-shrink-0 transition-transform duration-200 text-gray-500" id="accounts-dropdown-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                      
-                        <div id="accounts-dropdown-list" class="mt-1 space-y-1 pl-8 hidden">
-                            <a href="/accounts/balances" class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Account Balances</span>
-                            </a>
-                            <a href="/accounts/transactions"
-                                class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Transaction History</span>
-                            </a>
-                            <a href="/accounts/statements"
-                                class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 group transition">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                <span class="whitespace-nowrap transition-all duration-300 sidebar-text">Generate Statements</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Discounts & Scholarships -->
-                    <a href="/discounts" class="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 group transition mb-1">
-                        <svg class="w-5 h-5 flex-shrink-0 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"></path>
-                        </svg>
-                        <span class="ml-3 whitespace-nowrap transition-all duration-300 sidebar-text">Discounts</span>
-                    </a>
-                </div>
+               
 
                 <!-- System Administration -->
                 <div class="px-2 pt-4">
-                    <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 ml-3 whitespace-nowrap sidebar-text">Administration</h3>
+                    <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 ml-3 whitespace-nowrap sidebar-text">Reports</h3>
                     
                     <!-- Payment Settings -->
                     <a href="/payment-settings" class="flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 group transition mb-1">

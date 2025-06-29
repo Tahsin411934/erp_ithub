@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-[#ceebf0] border-b border-gray-100 shadow-lg">
+<nav x-data="{ open: false }" class="bg-[#252727] border-b border-gray-100 shadow-lg">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
@@ -8,7 +8,7 @@
                 <div class="shrink-0">
                     <a href="{{ route('dashboard') }}" class="flex items-center">
                         <x-application-logo class="block h-9 w-auto fill-current text-white hover:text-[#F37021] transition-colors duration-200" />
-                        <span class="ml-2 text-3xl font-bold text-blue-950 hidden md:block">IT HUB</span>
+                        <span class="ml-2 text-3xl font-bold text-blue-50 hidden md:block">IT HUB</span>
                     </a>
                 </div>
 
@@ -21,7 +21,7 @@
             <!-- Right Section - User Controls -->
             <div class="flex items-center space-x-4">
                 <!-- Notification Bell -->
-                <button class="p-1 rounded-full text-gray-950 hover:text-[#F37021] hover:bg-[#004d5a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F37021] transition-colors duration-200">
+                <button class="p-1 rounded-full text-gray-50 hover:text-[#F37021] hover:bg-[#004d5a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F37021] transition-colors duration-200">
                     <span class="sr-only">View notifications</span>
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -36,9 +36,9 @@
                             {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                         </div>
                         <!-- User Name (hidden on mobile) -->
-                        <span class="ml-2 hidden md:block text-gray-950">{{ Auth::user()->name }}</span>
+                        <span class="ml-2 hidden md:block text-gray-50">{{ Auth::user()->name }}</span>
                         <!-- Dropdown Chevron -->
-                        <svg class="ml-1 h-4 w-4 hidden text-gray-950 md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="ml-1 h-4 w-4 hidden text-gray-50 md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>

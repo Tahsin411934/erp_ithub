@@ -1,3 +1,3 @@
-<div class="w-12  ">
-    <img src="/logo.jpeg" alt="">
+<div class="w-36 rounded-lg  ">
+    <img src="/logo.jfif" alt="" class="rounded-lg">
 </div>

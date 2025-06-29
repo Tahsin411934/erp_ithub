@@ -1,9 +1,9 @@
 <x-app-layout>
-    <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-10">
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-10">
         <!-- Form Header -->
-        <div class="bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-6">
-            <h2 class="text-2xl font-bold text-white">Add New Student</h2>
-            <p class="text-blue-100 mt-1">Fill in the student details below</p>
+        <div class="bg-gradient-to-r from-blue-50 to-blue-100 px-8 py-6">
+            <h2 class="text-2xl font-bold text-gray-950">Add New Student</h2>
+            <p class="text-gray-600 mt-1">Fill in the student details below</p>
         </div>
 
         <!-- Session Messages -->
@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        @if($errors->any())
+        @if($errors->any()))
             <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mx-8 mt-4" role="alert">
                 <p class="font-bold">Validation Errors</p>
                 <ul class="list-disc list-inside">
@@ -103,19 +103,54 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Payable Amount (৳)</label>
-                        <input type="number" id="payable_amount" class="w-full border border-gray-300 rounded-md px-4 py-2 bg-gray-100" readonly>
+                        <input type="number" name="payable_amount" id="payable_amount" class="w-full border border-gray-300 rounded-md px-4 py-2 bg-gray-100" readonly>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Session</label>
-                        <input type="text" name="session" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
+                    
+                    <!-- Payment Option -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Payment Option</label>
+                        <div class="flex space-x-4">
+                            <div class="flex items-center">
+                                <input id="pay_later" name="payment_option" type="radio" value="later" checked class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                <label for="pay_later" class="ml-2 block text-sm text-gray-700">Pay Later</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="pay_now" name="payment_option" type="radio" value="now" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                <label for="pay_now" class="ml-2 block text-sm text-gray-700">Pay Now</label>
+                            </div>
+                        </div>
                     </div>
+                    
+                    <!-- Payment Fields (Hidden by default) -->
+                    <div id="payment_fields" class="hidden md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Paid Amount (৳)</label>
+                            <input type="number" name="paid_amount" id="paid_amount" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Due Amount (৳)</label>
+                            <input type="number" name="due_amount" id="due_amount" class="w-full border border-gray-300 rounded-md px-4 py-2 bg-gray-100" readonly>
+                        </div>
+                    </div>
+                    
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Batch</label>
-                        <input type="text" name="batch" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Session <span class="text-red-500">*</span></label>
+                        <select name="session_id" id="session_id" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="">Select Session</option>
+                            @foreach($sessions as $session)
+                                <option value="{{ $session->id }}" data-year="{{ $session->year }}" data-batch="{{ $session->batch }}">
+                                    {{ $session->session }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Year</label>
-                        <input type="text" name="year" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
+                        <input type="text" name="year" id="year" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Batch</label>
+                        <input type="text" name="batch" id="batch" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500" readonly>
                     </div>
                 </div>
             </div>
@@ -144,18 +179,8 @@
                         <label class="block text-sm font-medium text-gray-700 mb-1">Village</label>
                         <input type="text" name="vill" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Branch Code</label>
-                        <input type="number" name="branc_code" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                        <select name="status" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
-                            <option value="panding">Pending</option>
-                            <option value="approved">Approved</option>
-                            <option value="rejected">Rejected</option>
-                        </select>
-                    </div>
+                   
+                    
                 </div>
             </div>
 
@@ -237,8 +262,34 @@
             calculatePayableAmount();
         });
 
+        // Session selection handler
+        document.getElementById('session_id').addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const year = selectedOption.getAttribute('data-year');
+            const batch = selectedOption.getAttribute('data-batch');
+            
+            document.getElementById('year').value = year || '';
+            document.getElementById('batch').value = batch || '';
+        });
+
         // Discount change handler
         document.getElementById('discount').addEventListener('input', calculatePayableAmount);
+
+        // Payment option change handler
+        document.querySelectorAll('input[name="payment_option"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const paymentFields = document.getElementById('payment_fields');
+                if (this.value === 'now') {
+                    paymentFields.classList.remove('hidden');
+                    calculateDueAmount();
+                } else {
+                    paymentFields.classList.add('hidden');
+                }
+            });
+        });
+
+        // Paid amount change handler
+        document.getElementById('paid_amount').addEventListener('input', calculateDueAmount);
 
         // Calculate payable amount
         function calculatePayableAmount() {
@@ -247,9 +298,31 @@
             const payableAmount = fee - discount;
             
             document.getElementById('payable_amount').value = payableAmount > 0 ? payableAmount : 0;
+            
+            // Recalculate due amount if payment fields are visible
+            if (!document.getElementById('payment_fields').classList.contains('hidden')) {
+                calculateDueAmount();
+            }
+        }
+
+        // Calculate due amount
+        function calculateDueAmount() {
+            const payableAmount = parseFloat(document.getElementById('payable_amount').value) || 0;
+            const paidAmount = parseFloat(document.getElementById('paid_amount').value) || 0;
+            const dueAmount = payableAmount - paidAmount;
+            
+            document.getElementById('due_amount').value = dueAmount > 0 ? dueAmount : 0;
         }
 
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', calculatePayableAmount);
+        document.addEventListener('DOMContentLoaded', function() {
+            calculatePayableAmount();
+            
+            // Show payment fields if "Pay Now" is selected by default
+            if (document.getElementById('pay_now').checked) {
+                document.getElementById('payment_fields').classList.remove('hidden');
+                calculateDueAmount();
+            }
+        });
     </script>
 </x-app-layout>

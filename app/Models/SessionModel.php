@@ -10,6 +10,7 @@ class SessionModel extends Model
 
     protected $fillable = [
         'session',
+        'year',
         'batch',
     ];
 

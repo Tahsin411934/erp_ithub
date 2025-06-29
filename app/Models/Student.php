@@ -29,4 +29,15 @@ class Student extends Model
         'date_of_birth',
         'batch',
     ];
+ public function payment()
+    {
+        return $this->hasOne(Payment::class, 'student_id', 'id');
+    }
+
+
+public function paymentHistory()
+    {
+        return $this->hasMany(PaymentHistory::class, 'student_id', 'id');
+    }
+
 }
