@@ -41,6 +41,9 @@
                                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                 Pay Now
                             </button>
+ <a href="{{ url('/duepayment/save/' . $student->id) }}" target="_blank" class="bg-green-900 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Slip Print</a>
+
+
                             <!-- Hidden payment history data -->
                             <div id="history-data-{{ $student->id }}" class="hidden">
                                 @if($student->paymentHistory && count($student->paymentHistory) > 0)

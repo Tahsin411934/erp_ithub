@@ -83,7 +83,7 @@ public function printSlip($student_id)
     $payment = Payment::where('student_id', $student_id)->firstOrFail();
     $paymentHistory = PaymentHistory::where('student_id', $student_id)->get();
 
-    return view('payment.print', [
+    return view('payment.slip', [
         'student' => $student,
         'payment' => $payment,
         'paymentHistory' => $paymentHistory,

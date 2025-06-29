@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2025 at 12:39 PM
+-- Generation Time: Jun 29, 2025 at 05:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,6 +32,14 @@ CREATE TABLE `cache` (
   `value` mediumtext NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('laravel_cache_a@gmail.com|127.0.0.1', 'i:1;', 1751013597),
+('laravel_cache_a@gmail.com|127.0.0.1:timer', 'i:1751013597;', 1751013597);
 
 -- --------------------------------------------------------
 
@@ -199,6 +207,56 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `inventory`
+--
+
+CREATE TABLE `inventory` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 0,
+  `price` decimal(10,2) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `expiry_date` date DEFAULT NULL,
+  `supplier` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`id`, `item_id`, `quantity`, `price`, `location`, `expiry_date`, `supplier`, `created_at`, `updated_at`) VALUES
+(1, 4, 100, 6.00, 'Rampur, Ctg', NULL, NULL, '2025-06-29 09:11:08', '2025-06-29 09:11:08'),
+(2, 5, 1000, 2.00, 'Rampur, Ctg', NULL, NULL, '2025-06-29 09:17:15', '2025-06-29 09:17:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE `items` (
+  `item_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `category_id` int(11) NOT NULL,
+  `uom` varchar(50) NOT NULL COMMENT 'Unit of Measure (e.g. piece, box, kg)',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`item_id`, `name`, `image`, `category_id`, `uom`, `created_at`, `updated_at`) VALUES
+(4, 'Pen', 'items/xKySCDKFMpwzJn0fNYxiGBcjv1Kmr8x6QPQ9E98I.jpg', 2, 'pcs', '2025-06-29 08:36:25', '2025-06-29 08:36:25'),
+(5, 'Computer Print', 'items/XAfcxqwTLaaqIQB7QAxJvYD6EulDGY3O192tuETp.jpg', 1, '0', '2025-06-29 09:16:07', '2025-06-29 09:16:46');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jobs`
 --
 
@@ -280,6 +338,20 @@ CREATE TABLE `payments` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `student_id`, `total_payable`, `total_due`, `total_paid`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 0, 0, '2025-06-26 12:43:45', '2025-06-26 22:36:18'),
+(2, NULL, NULL, 0, 0, '2025-06-26 12:44:32', '2025-06-26 22:36:11'),
+(3, 6, 54415, 0, 0, '2025-06-26 12:53:51', '2025-06-26 22:36:57'),
+(4, 7, 3910, 0, 0, '2025-06-26 13:32:22', '2025-06-26 22:37:02'),
+(5, 8, 50000, 10000, 40000, '2025-06-26 14:09:14', '2025-06-26 14:09:14'),
+(6, 9, 50000, 9994, 40006, '2025-06-26 14:23:44', '2025-06-26 14:23:44'),
+(7, 10, 54415, 1, 54414, '2025-06-26 14:25:18', '2025-06-29 06:44:28'),
+(8, 11, 54415, 0, 54415, '2025-06-26 16:36:43', '2025-06-26 16:36:43');
+
 -- --------------------------------------------------------
 
 --
@@ -294,6 +366,33 @@ CREATE TABLE `payment_historys` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `payment_historys`
+--
+
+INSERT INTO `payment_historys` (`id`, `student_id`, `paid_amount`, `created_at`, `updated_at`) VALUES
+(21, 10, 17500, '2025-06-29 03:37:54', '2025-06-29 03:37:54'),
+(22, 10, 19999, '2025-06-29 03:38:55', '2025-06-29 03:38:55'),
+(23, 10, 0, '2025-06-29 03:41:32', '2025-06-29 03:41:32'),
+(24, 10, 0, '2025-06-29 05:03:50', '2025-06-29 05:03:50'),
+(25, 10, 0, '2025-06-29 06:44:28', '2025-06-29 06:44:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales`
+--
+
+CREATE TABLE `sales` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_name` varchar(100) DEFAULT NULL,
+  `total_amount` decimal(10,2) NOT NULL,
+  `discount` decimal(10,2) DEFAULT 0.00,
+  `grand_total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -305,15 +404,17 @@ CREATE TABLE `session` (
   `session` varchar(255) DEFAULT NULL,
   `batch` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `year` int(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `session`
 --
 
-INSERT INTO `session` (`id`, `session`, `batch`, `created_at`, `updated_at`) VALUES
-(1, 'Jan-june', '37th', '2025-06-25 01:41:33', '2025-06-25 01:41:33');
+INSERT INTO `session` (`id`, `session`, `batch`, `created_at`, `updated_at`, `year`) VALUES
+(1, 'Jan-june', '1st', '2025-06-25 01:41:33', '2025-06-26 15:44:26', 2025),
+(2, 'june-december', '2nd', '2025-06-26 15:43:38', '2025-06-26 15:44:47', 2025);
 
 -- --------------------------------------------------------
 
@@ -335,8 +436,28 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('18Y6awhKWh5YTdJBeWgGzwtvrsccwpBxZqVO9Yql', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRjcwamx6MHFzM2pkcHp3dXVxTkllaVhtSWt2S2NWUjJOYWgwcnNBNCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvc2Vzc2lvbnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1750837339),
-('TiBHIem7jBMZYnHzmk4BTQVD2m7UqSxBYBKAcjAu', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRWRpMWVMdTZjcDJzQ3M3VEZEZEZ4S1BwcGNZZDlheGpnTk9JQ2VoWCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvc2Vzc2lvbnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1750791959);
+('Z9FBgyEMbIL48hD3Meg2ZhjPTAZdhXh44yAwncYz', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoicllHWFVFajNzUUtCdEJYc3QweDlYUTFZUFNTejRSNWhtem1DVUZVcCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvaW52ZW50b3J5Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1751210343);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stationary_category`
+--
+
+CREATE TABLE `stationary_category` (
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `stationary_category`
+--
+
+INSERT INTO `stationary_category` (`category_id`, `category_name`, `created_at`, `updated_at`) VALUES
+(1, 'Computer & Printing Supplies', '2025-06-29 07:50:49', '2025-06-29 07:52:03'),
+(2, 'Writing Instruments', '2025-06-29 07:53:58', '2025-06-29 07:53:58');
 
 -- --------------------------------------------------------
 
@@ -345,7 +466,7 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 --
 
 CREATE TABLE `students` (
-  `id` int(11) NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
   `father_name` varchar(100) DEFAULT NULL,
   `mother_name` varchar(100) DEFAULT NULL,
@@ -367,6 +488,23 @@ CREATE TABLE `students` (
   `date_of_birth` date DEFAULT NULL,
   `batch` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `name`, `father_name`, `mother_name`, `phone_number`, `district`, `tana`, `vill`, `course_id`, `fee`, `address`, `session`, `image`, `year`, `signature`, `status`, `created_at`, `updated_at`, `branc_code`, `date_of_birth`, `batch`) VALUES
+(1, 'Abrar Fahim', 'Russell Vasquez', 'Surma Begum', '01323814588', NULL, NULL, NULL, 1, 54465, 'khulshi\r\n3 no road', NULL, NULL, '2025', NULL, 'panding', '2025-06-26 05:36:17', '2025-06-27 11:36:58', NULL, '2025-06-26', '1st'),
+(2, 'Abrar Fahim', 'Russell Vasquez', 'Surma Begum', '01323814588', NULL, NULL, NULL, 1, 54465, 'khulshi\r\n3 no road', NULL, 'students/images/hWXd6zXJy7q0ynwSnegtohoEv7HTeAVGp3zDKvdf.png', '2025', 'students/signatures/tAtGYi1zRIKXN8dV5Zb5XAX7W7KVDZ0G2p2RJRbB.png', 'panding', '2025-06-26 12:43:17', '2025-06-26 12:43:17', NULL, '2025-06-27', '37th'),
+(3, 'Abrar Fahim', 'Russell Vasquez', 'Surma Begum', '01323814588', NULL, NULL, NULL, 1, 54465, 'khulshi\r\n3 no road', NULL, 'students/images/ZUWRLLlRXloPfqPjL30Obk0TQ3QR0dmykuHLpGtN.png', '2025', 'students/signatures/iaYJWaThA6hkROmnaujR2MJtzxjyE3PXmNitxGsv.png', 'panding', '2025-06-26 12:43:45', '2025-06-26 12:43:45', NULL, '2025-06-27', '37th'),
+(4, 'Abrar Fahim', NULL, NULL, '01323814588', NULL, NULL, NULL, 1, 54465, 'khulshi\r\n3 no road', NULL, NULL, '2025', NULL, 'panding', '2025-06-26 12:44:32', '2025-06-26 12:44:32', NULL, NULL, '37th'),
+(5, 'Abrar Fahim', NULL, NULL, '01323814588', NULL, NULL, NULL, 1, 54465, 'khulshi\r\n3 no road', NULL, NULL, '2025', NULL, 'panding', '2025-06-26 12:45:56', '2025-06-26 12:45:56', NULL, NULL, '37th'),
+(6, 'Hayfa Stephens', 'Calista Whitaker', 'Dawn Santiago', '+1 (632) 771-3075', 'Facilis quisquam con', 'Et esse nobis aute', 'Animi ipsa et ut e', 1, 54465, 'Beatae nobis reicien', NULL, NULL, '2025', NULL, 'approved', '2025-06-26 12:53:51', '2025-06-26 12:53:51', NULL, '2019-03-21', '37th'),
+(7, 'Karly Travis', 'Barrett Leach', 'Garrett Ortiz', '+1 (717) 822-1765', 'Incididunt laborum r', 'Est rerum quod assum', 'Ea modi minima accus', 1, 54465, 'Enim perferendis sin', NULL, NULL, '2025', NULL, 'panding', '2025-06-26 13:32:22', '2025-06-26 13:32:22', NULL, '2000-12-04', '37th'),
+(8, 'Abrar Fahim', NULL, NULL, '01323814588', NULL, NULL, NULL, 1, 54465, 'khulshi\r\n3 no road', NULL, NULL, '2025', NULL, 'panding', '2025-06-26 14:09:14', '2025-06-26 14:09:14', NULL, NULL, '37th'),
+(9, 'Lacey Richard', 'Alika Erickson', 'Vance Lara', '+1 (186) 363-6775', 'Dolorum consequat A', 'Voluptatem sit reic', 'Unde tempor soluta t', 1, 54465, 'Ad dolore recusandae', NULL, NULL, '2025', NULL, 'panding', '2025-06-26 14:23:44', '2025-06-26 14:23:44', NULL, '1995-12-08', '37th'),
+(10, 'Brandon Wynn', 'Althea Abbott', 'Iliana Reynolds', '+1 (208) 123-6652', 'Distinctio Dignissi', 'Amet voluptatem del', 'Laborum et excepteur', 1, 54465, 'Reiciendis odio fugi', NULL, NULL, '2025', NULL, 'panding', '2025-06-26 14:25:18', '2025-06-27 11:38:04', NULL, '2009-08-11', '1st'),
+(11, 'Kareem Robertson', 'Ciaran Goff', 'Leroy Gross', '+1 (369) 531-6663', 'Vel ea commodo incid', 'Quia qui consequatur', 'Ullamco omnis sit ne', 1, 54465, 'Quisquam magnam inci', NULL, NULL, '2025', NULL, 'panding', '2025-06-26 16:36:43', '2025-06-27 11:37:32', NULL, '2017-08-16', '1st');
 
 -- --------------------------------------------------------
 
@@ -950,6 +1088,20 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `inventory_item_id_foreign` (`item_id`);
+
+--
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`item_id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -987,6 +1139,12 @@ ALTER TABLE `payment_historys`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `session`
 --
 ALTER TABLE `session`
@@ -999,6 +1157,18 @@ ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sessions_user_id_index` (`user_id`),
   ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Indexes for table `stationary_category`
+--
+ALTER TABLE `stationary_category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `upazilas`
@@ -1043,6 +1213,18 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `inventory`
+--
+ALTER TABLE `inventory`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -1058,19 +1240,37 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `payment_historys`
 --
 ALTER TABLE `payment_historys`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `stationary_category`
+--
+ALTER TABLE `stationary_category`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `upazilas`
@@ -1093,6 +1293,18 @@ ALTER TABLE `users`
 --
 ALTER TABLE `districts`
   ADD CONSTRAINT `districts_ibfk_2` FOREIGN KEY (`division_id`) REFERENCES `divisions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD CONSTRAINT `inventory_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `items`
+--
+ALTER TABLE `items`
+  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `stationary_category` (`category_id`);
 
 --
 -- Constraints for table `upazilas`
